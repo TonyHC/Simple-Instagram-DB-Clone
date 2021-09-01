@@ -47,6 +47,15 @@ CREATE TABLE Follows (
     PRIMARY KEY(follower_id, followee_id)
 );
 
+CREATE TABLE Unfollows (
+    follower_id INT NOT NULL,
+    followee_id INT NOT NULL,
+    followed_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(follower_id) REFERENCES Users(id),
+    FOREIGN KEY(followee_id) REFERENCES Users(id),
+    PRIMARY KEY(follower_id, followee_id)
+);
+
 CREATE TABLE Tags (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tag_name VARCHAR(255) NOT NULL UNIQUE,
